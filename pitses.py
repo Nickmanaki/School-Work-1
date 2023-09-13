@@ -27,18 +27,31 @@ def megisto(lista):
             pos = [i]
         elif lista[0][i] == maxi:
             pos.append(i)
-    return pos
+    return pos , maxi
 
 def elaxisto(lista):
+    mini = 1000000000000
+    L = len(lista[0])
+    for i in range(L):
+        if lista[0][i] < mini:
+            mini = lista[0][i]
+            pos2 = [i]
+        elif lista[0][i] == mini:
+            pos2.append(i)
+    return pos2,mini
+
+
+def elaxisto2(lista):
     mini = 100000000000
     L = len(lista[1])
     for i in range(L):
         if lista[1][i] < mini:
             mini = lista[1][i]
-            pos = [i]
-        elif lista[1][i] == mini:
-            pos.append(i)
-    return pos
+            pos3 = i
+    return pos3
+
+
+
 pizza = [[], []] #names, price
 
 
@@ -53,21 +66,34 @@ for i in range(3):
 
 
 elapameligo = sales(pizza)
-megi = megisto(elapameligo)
-elax = elaxisto(elapameligo)
+print "Income for every type of pizza: ,Income for every pizza size: "
+print elapameligo
+megionoma,megitimh = megisto(elapameligo)
+elaxonoma,elaxtimh = elaxisto(elapameligo)
+elax = elaxisto2(elapameligo)
+if elax == 0:
+    elax = "Kanonikh"
+elif elax == 1:
+    elax = "Megalh"
+else:
+    elax = "Gigas"
 
-print megi
+print "Pizza type with the highest income: "
+for i in megionoma:
+    print pizza[0][i]
+print "With an income of:", megitimh
+print "====================================="
+print "Pizza type with the lowest income: "
+for i in elaxonoma:
+    print pizza[0][i]
+print "With an income of:", elaxtimh
+print "====================================="
+print "Pizza size with the lowest income: "
 print elax
 
-for i in megi:
-    print pizza[0][i]
-for i in elax:
-    print elapameligo[1][i]
-    if i == 0:
-        print "K"
-    elif i == 1:
-        print "M"
-    else:
-        print "G"
+
+
+
+
 print "TELOS LEITOURGEI"
 
